@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'rest_framework_simplejwt',
-
     # aplicaciones
     'user',
     'posts',
@@ -80,8 +79,13 @@ WSGI_APPLICATION = 'my_blog.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'USER': 'wxctdlgvtwlrgj',
+        'NAME': 'db431g98gmkjbk',
+        'PASSWORD': '43c51c4453735e5305c888a876dc48bbe5c3716aa907d27a277fd07c0d5ed1c0',
+        'HOST': 'ec2-52-203-74-38.compute-1.amazonaws.com'
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
