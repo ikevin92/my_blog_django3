@@ -4,10 +4,30 @@ from django.urls.conf import include
 # from posts.views import HelloWorld
 # from posts.api.views import PostApiView, PostViewSet
 from posts.api.router import router_post
+# imports documentation swagger
+from rest_framework import permissions
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+# documentation swagger
+schema_view = get_schema_view(
+   openapi.Info(
+      title="Documentacion API",
+      default_version='v1',
+      description="Test description",
+      terms_of_service="https://www.google.com/policies/terms/",
+      contact=openapi.Contact(email="contact@snippets.local"),
+      license=openapi.License(name="BSD License"),
+   ),
+   public=True,
+   permission_classes=(permissions.AllowAny,),
+)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('posts/', HelloWorld.as_view())
     # path('api/posts/', PostApiView.as_view())
-    path('api/', include(router_post.urls))
+    path('api/', include(router_post.urls)),
+    path('swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
+    path('redoc/', schema_view.with_ui('redoc', cache_timeout=0), name='schema-redoc'),
 ]

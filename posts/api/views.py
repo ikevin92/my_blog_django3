@@ -3,17 +3,19 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet, ViewSet
 from rest_framework import status
+from rest_framework.permissions import IsAuthenticated, IsAdminUser, IsAuthenticatedOrReadOnly
 # models
 from posts.models import Post
 # serializer
 from posts.api.serializers import PostSerializer
+from posts.api.permissions import IsAdminOrReadOnly
 
 
 class PostModelViewSet(ModelViewSet):
+    permission_classes = [IsAdminOrReadOnly]
     serializer_class = PostSerializer
     queryset = Post.objects.all()
-    # http_method_names = ['get','put']
-    
+    # http_method_names = ['get', 'put']
 
 # class PostViewSet(ViewSet):
 #     def list(self, request):
